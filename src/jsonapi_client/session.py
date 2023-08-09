@@ -421,9 +421,10 @@ class Session:
         elif cache_only:
             return None
         else:
-            # Note: Document creation will add its resources to cache via .add_resources,
-            # no need to do it manually here
-            return self._ext_fetch_by_url(resource.url).resource
+            return self.read({"data": {"id": id_, "type": type_}}).resource
+            # # Note: Document creation will add its resources to cache via .add_resources,
+            # # no need to do it manually here
+            # return self._ext_fetch_by_url(resource.url).resource
 
     async def fetch_resource_by_resource_identifier_async(
                 self,
